@@ -1,17 +1,17 @@
-# 🏥 Impacto Orçamentário e Estatístico do Atendimento a Estrangeiros no SUS (2023–2025)
+#  Impacto Orçamentário e Estatístico do Atendimento a Estrangeiros no SUS (2023–2025)
 
 ![Status](https://img.shields.io/badge/Status-Concluído-brightgreen)
 ![Área](https://img.shields.io/badge/Foco-Finanças_Públicas_%26_Data_Science-blue)
 ![Ferramentas](https://img.shields.io/badge/Stack-Python_|_SQL_|_Contabilidade_Pública-orange)
 
-## 📌 Resumo Executivo (TL;DR)
+##  Resumo Executivo (TL;DR)
 Este projeto analisa o impacto real do atendimento a cidadãos estrangeiros (residentes e não residentes) no **Sistema Único de Saúde (SUS)** sob a ótica da **Ciência de Dados**, **Contabilidade de Custos** e **Gestão Orçamentária Pública**. 
 
 Através do cruzamento da produção ambulatorial e hospitalar nacional (~2,8 mil milhões de procedimentos/ano) com os registos de atendimento a estrangeiros entre 2023 e 2025, demonstra-se matematicamente que essa procura representa **entre 0,028% e 0,041%** do volume total do sistema — configurando uma **variação estatística residual** integralmente absorvida pela margem de segurança das Leis Orçamentárias Anuais (LOA), sem necessidade de dotações extraordinárias.
 
 ---
 
-## 📊 Principais Indicadores e Descobertas
+##  Principais Indicadores e Descobertas
 
 | Métrica / Indicador | Valor Consolidado | Fonte / Referência |
 | :--- | :--- | :--- |
@@ -24,7 +24,7 @@ Através do cruzamento da produção ambulatorial e hospitalar nacional (~2,8 mi
 
 ---
 
-## 📈 Evolução Temporal (2023–2025)
+##  Evolução Temporal (2023–2025)
 
 A curva histórica refuta a hipótese de crescimento exponencial contínuo, demonstrando um comportamento de **patamares flutuantes** guiados por choques migratórios pontuais (2023) seguidos de estabilização e acomodação (2024–2025):
 
@@ -39,7 +39,7 @@ xychart-beta
 
 ---
 
-## 🏛️ Fundamentação Económica e Contábil
+##  Fundamentação Económica e Contábil
 
 A sustentabilidade financeira do princípio da **Universalidade** (Art. 196 da CF/88) frente a pacientes internacionais apoia-se em três pilares teóricos e contabilísticos:
 
@@ -52,7 +52,7 @@ A sustentabilidade financeira do princípio da **Universalidade** (Art. 196 da C
 
 ---
 
-## 🔍 Estudo de Caso Microeconómico: Juiz de Fora (MG) - LOA 2025
+##  Estudo de Caso Microeconómico: Juiz de Fora (MG) - LOA 2025
 
 Para testar a hipótese no nível municipal, auditou-se o comportamento do Fundo Municipal de Saúde de Juiz de Fora frente à **Margem de Segurança Operacional** (estimada em 2% do orçamento para absorver sazonalidades epidemiológicas e flutuações):
 
@@ -70,7 +70,7 @@ pie showData
 
 ---
 
-## 🗂️ Estrutura do Repositório
+##  Estrutura do Repositório
 
 ```text
 analise-orcamentaria-estrangeiros-sus/
@@ -86,7 +86,7 @@ analise-orcamentaria-estrangeiros-sus/
 
 ---
 
-## 🛠️ Como Reproduzir a Extração Oficial no DATASUS
+##  Como Reproduzir a Extração Oficial no DATASUS
 1. Aceda ao portal **TabNet / DATASUS** (`SIA/SUS` - Produção Ambulatorial ou `SIH/SUS` - Produção Hospitalar).
 2. Filtre os ficheiros de microdados pelas variáveis de nacionalidade (`PA_NAC <> '010'` para pacientes com código diferente de brasileiro) e caráter de atendimento (`PA_CATEND = '02'` para Urgência/Emergência vs. Atenção Primária).
 3. Execute o script `sql/03_extracao_agregacao_datasus.sql` ou o notebook `notebooks/analise_orcamentaria_estrangeiros_sus.ipynb` para reproduzir as agregações.
