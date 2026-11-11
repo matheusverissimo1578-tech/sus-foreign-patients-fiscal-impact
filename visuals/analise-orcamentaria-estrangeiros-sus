@@ -1,0 +1,80 @@
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Configuração de estilo minimalista institucional (Azul corporativo / Receita Federal)
+plt.style.use('seaborn-v0_8-whitegrid')
+plt.rcParams['font.family'] = 'sans-serif'
+
+# ==========================================
+# 1. GRÁFICO: Evolução de Atendimentos a Estrangeiros no SUS (2023–2025)
+# ==========================================
+fig, ax1 = plt.subplots(figsize=(9, 5.5), dpi=300)
+
+anos = ['2023', '2024', '2025']
+atendimentos_milhares = [1143.223, 870.000, 775.619]
+percentuais = ['0,041%', '0,031%', '0,028%']
+
+cores1 = ['#1b4965', '#62b6cb', '#5fa8d3']
+barras1 = ax1.bar(anos, atendimentos_milhares, color=cores1, width=0.48, edgecolor='#0d2b3e', linewidth=1.2, alpha=0.92)
+ax1.plot(anos, atendimentos_milhares, color='#e63946', marker='o', markersize=8, linewidth=2.5, label='Tendência de Acomodação (-32,15%)')
+
+for barra, pct in zip(barras1, percentuais):
+    altura = barra.get_height()
+    ax1.annotate(f'{altura:,.1f} mil\n({pct} do SUS)',
+                xy=(barra.get_x() + barra.get_width() / 2, altura),
+                xytext=(0, 10),
+                textcoords="offset points",
+                ha='center', va='bottom', fontsize=10, fontweight='bold', color='#1d3557')
+
+ax1.set_title('Evolução de Atendimentos a Estrangeiros no SUS (2023–2025)', fontsize=14, fontweight='bold', pad=18, color='#0d2b3e')
+ax1.set_xlabel('Ano de Competência', fontsize=11, fontweight='bold', labelpad=10)
+ax1.set_ylabel('Volume de Atendimentos (em milhares)', fontsize=11, fontweight='bold', labelpad=10)
+ax1.set_ylim(0, 1400)
+ax1.legend(loc='upper right', frameon=True, facecolor='white', framealpha=0.9, fontsize=10)
+
+plt.figtext(0.5, 0.01, 'Fonte: Ministério da Saúde / DATASUS (Produção Total Anual Estimada: ~2,8 mil milhões de procedimentos)', 
+            ha='center', fontsize=9, style='italic', color='#555555')
+
+plt.tight_layout(rect=[0, 0.04, 1, 1])
+plt.savefig('evolucao_atendimentos_2023_2025.png', dpi=300)
+plt.close()
+
+# ==========================================
+# 2. GRÁFICO: Comparativo Orçamentário Nacional do SUS (2025)
+# ==========================================
+fig, ax2 = plt.subplots(figsize=(10, 6), dpi=300)
+
+categorias = ['Orçamento Total SUS\n(Consolidado 2025)', 'Margem de Segurança\n(2% Preventiva)', 'Gasto com Estrangeiros\n(Impacto 2025)']
+valores_bilhoes = [380.0, 7.6, 0.105]
+cores2 = ['#1b4965', '#2a9d8f', '#e63946']
+
+barras2 = ax2.bar(categorias, valores_bilhoes, color=cores2, width=0.48, edgecolor='#0d2b3e', linewidth=1.2, alpha=0.92)
+
+ax2.set_title('Comparativo Orçamentário do SUS: Orçamento, Margem de Segurança e Estrangeiros (2025)', fontsize=13, fontweight='bold', pad=18, color='#0d2b3e')
+ax2.set_ylabel('Valor em Bilhões de Reais (R$ Bi)', fontsize=11, fontweight='bold', labelpad=10)
+ax2.set_ylim(0, 420.0)
+ax2.grid(axis='y', linestyle='--', alpha=0.7)
+
+for barra in barras2:
+    yval = barra.get_height()
+    if yval > 10.0:
+        texto = f'R$ {yval:,.1f} bi'
+    elif yval > 1.0:
+        texto = f'R$ {yval:.1f} bi'
+    else:
+        texto = f'R$ {yval:.3f} bi\n(~R$ 105 mi | 0,0277%)'
+        
+    ax2.annotate(texto,
+                xy=(barra.get_x() + barra.get_width() / 2, yval),
+                xytext=(0, 8),
+                textcoords="offset points",
+                ha='center', va='bottom', fontsize=10, fontweight='bold', color='#1d3557')
+
+plt.figtext(0.5, 0.01, 'Fontes: Ministério da Saúde / DATASUS / SIOPS (Orçamento Consolidado SUS 2025: ~R$ 380 bi)', 
+            ha='center', fontsize=9, style='italic', color='#555555')
+
+plt.tight_layout(rect=[0, 0.04, 1, 1])
+plt.savefig('comparativo_orcamentario_sus.png', dpi=300)
+plt.close()
+
+print("Ambos os gráficos de visualização foram gerados com sucesso.")
